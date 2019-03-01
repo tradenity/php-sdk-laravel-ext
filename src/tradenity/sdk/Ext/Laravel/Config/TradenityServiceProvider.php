@@ -4,7 +4,7 @@ namespace Tradenity\SDK\Ext\Laravel\Config;
 
 use Tradenity\SDK\Ext\Laravel\Session\SimpleSessionIdAccessor;
 use Illuminate\Support\ServiceProvider;
-use Tradenity\SDK\TradenityClient;
+use Tradenity\SDK\ApiClient;
 
 class TradenityServiceProvider extends ServiceProvider
 {
@@ -17,10 +17,10 @@ class TradenityServiceProvider extends ServiceProvider
     {
         $sessionAccess = new SimpleSessionIdAccessor();
         if(config('tradenity.end_point')) {
-            TradenityClient::$endPoint = config('tradenity.end_point');
+            ApiClient::$apiEndPoint = config('tradenity.end_point');
         }
-        TradenityClient::$key = config('tradenity.api_key');
-        TradenityClient::$sessionIdAccessor = $sessionAccess;
+        ApiClient::$ApiKey = config('tradenity.api_key');
+        ApiClient::$sessionIdAccessor = $sessionAccess;
     }
 
     /**

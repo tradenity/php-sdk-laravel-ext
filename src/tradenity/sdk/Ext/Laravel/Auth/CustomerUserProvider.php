@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
-use Tradenity\SDK\Entities\Customer;
+use Tradenity\SDK\Resources\Customer;
 
 class CustomerUserProvider implements UserProvider
 {

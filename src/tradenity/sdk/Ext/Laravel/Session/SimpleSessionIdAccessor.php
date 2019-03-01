@@ -9,7 +9,7 @@
 namespace Tradenity\SDK\Ext\Laravel\Session;
 
 use Illuminate\Support\Facades\Session;
-use Tradenity\SDK\Http\SessionIdAccessor;
+use Tradenity\SDK\SessionIdAccessor;
 
 class SimpleSessionIdAccessor implements SessionIdAccessor
 {

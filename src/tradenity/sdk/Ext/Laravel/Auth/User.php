@@ -4,7 +4,7 @@ namespace Tradenity\SDK\Ext\Laravel\Auth;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
-use Tradenity\SDK\Entities\Customer;
+use Tradenity\SDK\Resources\Customer;
 
 class User implements UserContract
 {
@@ -17,16 +17,21 @@ class User implements UserContract
     
     public $rememberToken;
 
-    public function __construct($customer)
+    public function __construct(Customer $customer)
     {
-        $this->id = $customer->id;
-        $this->firstName = $customer->firstName;
-        $this->lastName = $customer->lastName;
-        $this->email = $customer->email;
-        $this->username = $customer->username;
-        $this->password = $customer->password;
+        $this->id = $customer->getId();
+        $this->firstName = $customer->getFirstName();
+        $this->lastName = $customer->getLastName();
+        $this->email = $customer->getEmail();
+        $this->username = $customer->getUsername();
+        $this->password = $customer->getPassword();
     }
    
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
     public function getAuthIdentifierName()
     {
         return 'id';
@@ -59,14 +64,14 @@ class User implements UserContract
 
     public function toCustomer()
     {
-        $c = new Customer();
-        $c->id = $this->id;
-        $c->firstName = $this->firstName;
-        $c->lastName = $this->lastName;
-        $c->email = $this->email;
-        $c->username = $this->username;
-        $c->password = $this->password;
-        return $c;
+        return new Customer([
+            'id' => $this->id,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'email' => $this->email,
+            'username' => $this->username,
+            'password' => $this->password
+        ]);
     }
 
 }
